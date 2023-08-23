@@ -7,6 +7,10 @@ Created on Tue Aug 22 23:21:14 2023
 
 import pickle
 import streamlit as st
+import sys
+
+sys.path.insert(1, 'C:/Users/91771/anaconda3/envs/newenv/Lib/site-packages/streamlit_option_menu-0.3.6.dist-info')
+
 from streamlit_option_menu import option_menu
 
 diab_model = pickle.load(open('C:/Users/91771/Disease_Prediction_Model/saved_models/diab_model.sav', 'rb'))
