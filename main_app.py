@@ -9,7 +9,7 @@ import pickle
 import streamlit as st
 import sys
 
-sys.path.insert(1, 'C:/Users/91771/anaconda3/envs/newenv/Lib/site-packages/streamlit_option_menu-0.3.6.dist-info')
+sys.path.insert(1, 'C:/Users/91771/anaconda3/envs/newenv/Lib/site-packages/streamlit_option_menu')
 
 from streamlit_option_menu import option_menu
 
