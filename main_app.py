@@ -15,7 +15,7 @@ from streamlit_option_menu import option_menu
 
 diab_model = pickle.load(open('C:/Users/91771/OneDrive/Documents/GitHub/Disease_Prediction_Model/saved_models/diab_model.sav', 'rb'))
 heart_model = pickle.load(open("C:/Users/91771/OneDrive/Documents/GitHub/Disease_Prediction_Model/saved_models/heart_model.sav",'rb'))
-parkinsons_model = pickle.load(open("C:/Users/OneDrive/Documents/GitHub/91771/Disease_Prediction_Model/saved_models/parkinsons_model.sav", 'rb'))
+parkinsons_model = pickle.load(open("C:/Users/91771/OneDrive/Documents/GitHub/Disease_Prediction_Model/saved_models/parkinsons_model.sav", 'rb'))
 
 st.title("Disease Prediction App")
 
