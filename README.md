@@ -16,6 +16,7 @@ This project is a Streamlit web application designed to predict the likelihood o
 
 ## Demo
 Here is a quick view of the Web App Interface:
+
 ![App Interface](https://raw.githubusercontent.com/Abirgit44/Disease_Prediction_Model/master/main-app-demo.png)
 ## Features
 - Predict diabetes, heart disease, and Parkinson's disease.
