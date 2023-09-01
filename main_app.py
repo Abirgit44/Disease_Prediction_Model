@@ -19,12 +19,10 @@ parkinsons_model = pickle.load(open("saved_models/parkinsons_model.sav", 'rb'))
 
 st.title("Disease Prediction App")
 
-st.sidebar.title("🔍 Details🔍")
+st.sidebar.title("# Details")
 
 st.sidebar.markdown("""
-    Welcome to the Disease Prediction App! This app allows you to predict the likelihood of having diabetes,
-    heart disease, and Parkinson's disease based on certain medical parameters.
-    Simply provide the disease type, then provide information in the main page and click on the respective prediction button.
+        Predict the likelihood of diabetes, heart disease, and Parkinson's disease using machine learning models in this Streamlit web application. Take the help of 'How to Enter Data' expander to see how to enter data. Also view the data sources down below.
     """)
 
 
@@ -38,6 +36,17 @@ with st.sidebar:
                            'Parkinsons Prediction'],
                           icons=['activity','heart','person'],
                           default_index=0)
+
+st.sidebar.markdown(
+        """
+        ---
+        ## Data Sources 📊
+
+        - Diabetes Data: [Click Me](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
+        - Heart Disease Data: [Clicl Me](https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset)
+        - Parkinson's Data: [Click Me](https://www.kaggle.com/datasets/debasisdotcom/parkinson-disease-detection)
+        """
+    )
 
 sidebar_expander = st.sidebar.expander("📝 How to Enter Data")
 with sidebar_expander:
