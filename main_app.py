@@ -39,7 +39,7 @@ with st.sidebar:
                           icons=['activity','heart','person'],
                           default_index=0)
 
-sidebar_expander = st.sidebar.beta_expander("📝 How to Enter Data")
+sidebar_expander = st.sidebar.expander("📝 How to Enter Data")
 with sidebar_expander:
         st.markdown(
             """
