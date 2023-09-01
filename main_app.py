@@ -19,10 +19,10 @@ parkinsons_model = pickle.load(open("saved_models/parkinsons_model.sav", 'rb'))
 
 st.title("Disease Prediction App")
 
-st.sidebar.title("# Details")
+st.sidebar.title("📋 Details")
 
 st.sidebar.markdown("""
-        Predict the likelihood of diabetes, heart disease, and Parkinson's disease using machine learning models in this Streamlit web application. Take the help of 'How to Enter Data' expander to see how to enter data. Also view the data sources down below.
+        Predict the likelihood of _Diabetes_, _Heart disease_, and _Parkinson's_ disease using machine learning models in this Streamlit web application. Take the help of   _**"How to Enter Data"**_  expander to see how to enter data. Also view the data sources down below.
     """)
 
 
@@ -106,6 +106,20 @@ with sidebar_expander:
 
             """
         )
+
+st.sidebar.markdown(
+        """
+        ---
+
+        ## Developed by
+        👨‍💻 Abir Maiti
+
+        📊 Data Analyst
+
+        🇮🇳 India
+
+        """
+)
 
 
 st.markdown("---")
