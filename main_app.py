@@ -40,7 +40,7 @@ with st.sidebar:
                           default_index=0)
 
 sidebar_expander = st.sidebar.beta_expander("📝 How to Enter Data")
-    with sidebar_expander:
+with sidebar_expander:
         st.markdown(
             """
             To enter data for predictions, use the main page input boxes. Here are some sample examples:
