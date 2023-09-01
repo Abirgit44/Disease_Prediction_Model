@@ -15,9 +15,9 @@ Predict the likelihood of diabetes, heart disease, and Parkinson's disease using
 This project is a Streamlit web application designed to predict the likelihood of three diseases: diabetes, heart disease, and Parkinson's disease. By entering relevant medical parameters, users can obtain predictions from the pre-trained machine learning models.
 
 ## Demo
-Here is a quick view of the Web App Interface:
+Here is a quick view of the Web App Interface(_Click to see the App_):
 
-![App Interface](https://raw.githubusercontent.com/Abirgit44/Disease_Prediction_Model/master/main-app-demo.png)
+[![App Interface](https://raw.githubusercontent.com/Abirgit44/Disease_Prediction_Model/master/main-app-demo.png)](https://predict-disease-by-abir.streamlit.app/)
 ## Features
 - Predict diabetes, heart disease, and Parkinson's disease.
 - User-friendly interface for input and predictions.
