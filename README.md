@@ -23,7 +23,7 @@ This project is a Streamlit web application designed to predict the likelihood o
 - Incorporate interactive elements, e.g., buttons and visualizations.
 
 ## Installation
-1. Clone this repository:
+1. Clone this repository: ```gh repo clone Abirgit44/Disease_Prediction_Model```
 
 
 ## Author
