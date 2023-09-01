@@ -24,7 +24,7 @@ st.sidebar.title("🔍 Details🔍")
 st.sidebar.markdown("""
     Welcome to the Disease Prediction App! This app allows you to predict the likelihood of having diabetes,
     heart disease, and Parkinson's disease based on certain medical parameters.
-    Simply provide your information in the sidebar and click on the respective prediction button.
+    Simply provide the disease type, then provide information in the main page and click on the respective prediction button.
     """)
 
 
@@ -39,6 +39,64 @@ with st.sidebar:
                           icons=['activity','heart','person'],
                           default_index=0)
 
+sidebar_expander = st.sidebar.beta_expander("📝 How to Enter Data")
+    with sidebar_expander:
+        st.markdown(
+            """
+            To enter data for predictions, use the main page input boxes. Here are some sample examples:
+
+            ### Diabetes Prediction
+            - **Pregnancies**: 6
+            - **Glucose**: 148
+            - **BloodPressure**: 72
+            - **SkinThickness**: 35
+            - **Insulin**: 0
+            - **BMI**: 33.6
+            - **DiabetesPedigreeFunction**: 0.627
+            - **Age**: 50
+
+
+            ### Heart Disease Prediction
+            - **Age**: 63
+            - **Sex**: 1
+            - **Chest Pain Type (cp)**: 3
+            - **Resting Blood Pressure (trestbps)**: 145
+            - **Cholesterol (chol)**: 233
+            - **Fasting Blood Sugar (fbs)**: 1
+            - **Resting ECG (restecg)**: 0
+            - **Maximum Heart Rate (thalach)**: 150
+            - **Exercise Induced Angina (exang)**: 0
+            - **ST Depression Induced by Exercise (oldpeak)**: 2.3
+            - **Slope of the Peak Exercise ST Segment (slope)**: 0
+            - **Number of Major Vessels (ca)**: 0
+            - **Thalassemia Type (thal)**: 1
+
+            ### Parkinson's Prediction
+            - **MDVP: Fo (Hz)**: 119.99200
+            - **MDVP: Fhi (Hz)**: 157.30200
+            - **MDVP: Flo (Hz)**: 74.99700
+            - **MDVP: Jitter (%)**: 0.00784
+            - **MDVP: Jitter (Abs)**: 0.00007
+            - **MDVP: RAP**: 0.00370
+            - **MDVP: PPQ**: 0.00554
+            - **Jitter: DDP**: 0.01109
+            - **MDVP: Shimmer**: 0.04374
+            - **MDVP: Shimmer (dB)**: 0.42600
+            - **Shimmer: APQ3**: 0.02182
+            - **Shimmer: APQ5**: 0.03130
+            - **MDVP: APQ**: 0.02971
+            - **Shimmer: DDA**: 0.06545
+            - **NHR**: 0.02211
+            - **HNR**: 21.03300
+            - **RPDE**: 0.414783
+            - **DFA**: 0.815285
+            - **Spread1**: -4.813031
+            - **Spread2**: 0.266482
+            - **D2**: 2.301442
+            - **PPE**: 0.284654
+
+            """
+        )
 
 
 st.markdown("---")
