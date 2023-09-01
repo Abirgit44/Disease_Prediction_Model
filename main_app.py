@@ -20,8 +20,7 @@ parkinsons_model = pickle.load(open("saved_models/parkinsons_model.sav", 'rb'))
 st.title("Disease Prediction App")
 
 st.markdown("""
-        📱 <small><em>**Mobile Users:** Click the > icon (top left) to access sidebar content for instructions on using this app.
-        ---
+        <p style="font-size: 10px;">📱 <strong>Mobile Users:</strong> Click the <strong>top left</strrong> icon to access sidebar content for instructions on using this app.</p>
         """,unsafe_allow_html=True)
 
 st.sidebar.title("📋 Details")
