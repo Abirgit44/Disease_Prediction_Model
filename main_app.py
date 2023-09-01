@@ -43,7 +43,7 @@ st.sidebar.markdown(
         ## Data Sources 📊
 
         - Diabetes Data: [Click Me](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
-        - Heart Disease Data: [Clicl Me](https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset)
+        - Heart Disease Data: [Click Me](https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset)
         - Parkinson's Data: [Click Me](https://www.kaggle.com/datasets/debasisdotcom/parkinson-disease-detection)
         """
     )
