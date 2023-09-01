@@ -122,6 +122,7 @@ st.sidebar.markdown(
 
         🇮🇳 India
 
+        [![GitHub](https://img.shields.io/badge/GitHub-Profile-blue?logo=github)](https://bit.ly/Abirgit44) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://bit.ly/linkAbir)
         """
 )
 
