@@ -194,7 +194,7 @@ if (selected == 'Diabetes Prediction'):
 
                     st.success(diab_diagnosis)
         except ValueError:
-            st.error("Please enter valid numeric values.")
+            st.error("Please enter valid numeric values for Diabetes Prediction.")
 
 # Heart Disease Prediction Page
 if (selected == 'Heart Disease Prediction'):
