@@ -8,6 +8,7 @@ Created on Tue Aug 22 23:21:14 2023
 import pickle
 import streamlit as st
 import sys
+from sklearn.metrics import accuracy_score
 
 sys.path.insert(1, 'C:/Users/91771/anaconda3/envs/newenv/Lib/site-packages/streamlit_option_menu')
 
@@ -63,7 +64,7 @@ with sidebar_expander:
             ### Diabetes Prediction
             - **Pregnancies**: Enter a whole number (e.g., 6)
             - **Glucose**: Enter a number within the range [0, 200]
-            - **BloodPressure**: Enter a single number (e.g., 72)
+            - **BloodPressure(Diastolic BP)**: Enter a single number (e.g., 72)
             - **SkinThickness**: Enter a whole number (e.g., 35)
             - **Insulin**: Enter a non-negative number within the range [0,35]
             - **BMI**: Enter a number within the range [0, 60]
@@ -74,7 +75,7 @@ with sidebar_expander:
             - **Age**: Enter a whole number within the range [0, 130]
             - **Sex**: Enter 0 for female or 1 for male
             - **Chest Pain Type (cp)**: Enter an integer between 0 and 3
-            - **Resting Blood Pressure**: Enter a single number (e.g., 72)
+            - **Resting Blood Pressure(Diastolic BP)**: Enter a single number (e.g., 72)
             - **Cholesterol (chol)**: Enter a number within the range [0, 600]
             - **Fasting Blood Sugar ( > 120 mg/dl)**: Enter 0 for False or 1 for True
             - **Resting ECG (restecg)**: Enter an integer between 0 and 2
@@ -139,6 +140,7 @@ if (selected == 'Diabetes Prediction'):
 
 
     # getting the input data from the user
+
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -165,7 +167,6 @@ if (selected == 'Diabetes Prediction'):
     with col2:
         Age = st.text_input('Age of the Person')
 
-
     # code for Prediction
     diab_diagnosis = ''
 
@@ -173,26 +174,26 @@ if (selected == 'Diabetes Prediction'):
 
     if st.button('Diabetes Test Result'):
         try:
-                Pregnancies = float(Pregnancies)
-                Glucose = float(Glucose)
-                BloodPressure = float(BloodPressure)
-                SkinThickness = float(SkinThickness)
-                Insulin = float(Insulin)
-                BMI = float(BMI)
-                DiabetesPedigreeFunction = float(DiabetesPedigreeFunction)
-                Age = float(Age)
+                    Pregnancies = float(Pregnancies)
+                    Glucose = float(Glucose)
+                    BloodPressure = float(BloodPressure)
+                    SkinThickness = float(SkinThickness)
+                    Insulin = float(Insulin)
+                    BMI = float(BMI)
+                    DiabetesPedigreeFunction = float(DiabetesPedigreeFunction)
+                    Age = float(Age)
 
-                if any(x < 0 for x in [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]):
-                    st.error("Please enter non-negative values for all input fields.")
-                else:
-                    diab_prediction = diab_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-
-                    if (diab_prediction[0] == 1):
-                      diab_diagnosis = "🩸 **Diagnosis:** The person has been classified as a patient **with diabetes**."
+                    if any(x < 0 for x in [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]):
+                        st.error("Please enter non-negative values for all input fields.")
                     else:
-                      diab_diagnosis = "🥦 **Diagnosis:** The person has been classified as a patient to **not** have diabetes."
+                        diab_prediction = diab_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+                        if (diab_prediction[0] == 1):
+                              diab_diagnosis = "🩸 **Diagnosis:** The person has been classified as a patient **with diabetes**."
+                        else:
+                              diab_diagnosis = "🥦 **Diagnosis:** The person has been classified as a patient to **not** have diabetes."
 
-                    st.success(diab_diagnosis)
+                        st.success(diab_diagnosis)
+
         except ValueError:
             st.error("Please enter valid numeric values for Diabetes Prediction.")
 
