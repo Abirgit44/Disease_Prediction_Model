@@ -17,6 +17,8 @@ diab_model = pickle.load(open('saved_models/diab_model.sav', 'rb'))
 heart_model = pickle.load(open("saved_models/heart_model.sav",'rb'))
 parkinsons_model = pickle.load(open("saved_models/parkinsons_model.sav", 'rb'))
 
+
+
 st.title("Disease Prediction App")
 
 st.markdown("""
@@ -54,62 +56,61 @@ st.sidebar.markdown(
 
 sidebar_expander = st.sidebar.expander("📝 How to Enter Data")
 with sidebar_expander:
-        st.markdown(
+          st.markdown(
             """
             To enter data for predictions, use the main page input boxes. Here are some sample examples:
 
             ### Diabetes Prediction
-            - **Pregnancies**: 6
-            - **Glucose**: 148
-            - **BloodPressure**: 72
-            - **SkinThickness**: 35
-            - **Insulin**: 0
-            - **BMI**: 33.6
-            - **DiabetesPedigreeFunction**: 0.627
-            - **Age**: 50
-
+            - **Pregnancies**: Enter a whole number (e.g., 6)
+            - **Glucose**: Enter a number within the range [0, 200]
+            - **BloodPressure**: Enter a single number (e.g., 72)
+            - **SkinThickness**: Enter a whole number (e.g., 35)
+            - **Insulin**: Enter a non-negative number within the range [0,35]
+            - **BMI**: Enter a number within the range [0, 60]
+            - **DiabetesPedigreeFunction**: Enter a number within the range [0, 2]
+            - **Age**: Enter a whole number within the range [0, 130]
 
             ### Heart Disease Prediction
-            - **Age**: 63
-            - **Sex**: 1
-            - **Chest Pain Type (cp)**: 3
-            - **Resting Blood Pressure (trestbps)**: 145
-            - **Cholesterol (chol)**: 233
-            - **Fasting Blood Sugar (fbs)**: 1
-            - **Resting ECG (restecg)**: 0
-            - **Maximum Heart Rate (thalach)**: 150
-            - **Exercise Induced Angina (exang)**: 0
-            - **ST Depression Induced by Exercise (oldpeak)**: 2.3
-            - **Slope of the Peak Exercise ST Segment (slope)**: 0
-            - **Number of Major Vessels (ca)**: 0
-            - **Thalassemia Type (thal)**: 1
+            - **Age**: Enter a whole number within the range [0, 130]
+            - **Sex**: Enter 0 for female or 1 for male
+            - **Chest Pain Type (cp)**: Enter an integer between 0 and 3
+            - **Resting Blood Pressure**: Enter a single number (e.g., 72)
+            - **Cholesterol (chol)**: Enter a number within the range [0, 600]
+            - **Fasting Blood Sugar ( > 120 mg/dl)**: Enter 0 for False or 1 for True
+            - **Resting ECG (restecg)**: Enter an integer between 0 and 2
+            - **Maximum Heart Rate (thalach)**: Enter a number within the range [60, 220]
+            - **Exercise Induced Angina (exang)**: Enter 0 for No or 1 for Yes
+            - **ST Depression Induced by Exercise (oldpeak)**: Enter a float number within the range [0, 10]
+            - **Slope of the Peak Exercise ST Segment (slope)**: Enter an integer between 0 and 2
+            - **Number of Major Vessels (ca)**: Enter an integer between 0 and 4
+            - **Thalassemia Type (thal)**: Enter an integer between 0 and 2
 
             ### Parkinson's Prediction
-            - **MDVP: Fo (Hz)**: 119.99200
-            - **MDVP: Fhi (Hz)**: 157.30200
-            - **MDVP: Flo (Hz)**: 74.99700
-            - **MDVP: Jitter (%)**: 0.00784
-            - **MDVP: Jitter (Abs)**: 0.00007
-            - **MDVP: RAP**: 0.00370
-            - **MDVP: PPQ**: 0.00554
-            - **Jitter: DDP**: 0.01109
-            - **MDVP: Shimmer**: 0.04374
-            - **MDVP: Shimmer (dB)**: 0.42600
-            - **Shimmer: APQ3**: 0.02182
-            - **Shimmer: APQ5**: 0.03130
-            - **MDVP: APQ**: 0.02971
-            - **Shimmer: DDA**: 0.06545
-            - **NHR**: 0.02211
-            - **HNR**: 21.03300
-            - **RPDE**: 0.414783
-            - **DFA**: 0.815285
-            - **Spread1**: -4.813031
-            - **Spread2**: 0.266482
-            - **D2**: 2.301442
-            - **PPE**: 0.284654
+            - **MDVP: Fo (Hz)**: Enter a number within the range [0, 250]
+            - **MDVP: Fhi (Hz)**: Enter a number within the range [0, 250]
+            - **MDVP: Flo (Hz)**: Enter a number within the range [0, 250]
+            - **MDVP: Jitter (%)**: Enter a number within the range [0, 1]
+            - **MDVP: Jitter (Abs)**: Enter a number within the range [0, 0.1]
+            - **MDVP: RAP**: Enter a number within the range [0, 0.1]
+            - **MDVP: PPQ**: Enter a number within the range [0, 0.1]
+            - **Jitter: DDP**: Enter a number within the range [0, 0.2]
+            - **MDVP: Shimmer**: Enter a number within the range [0, 1]
+            - **MDVP: Shimmer (dB)**: Enter a number within the range [0, 5]
+            - **Shimmer: APQ3**: Enter a number within the range [0, 0.05]
+            - **Shimmer: APQ5**: Enter a number within the range [0, 0.1]
+            - **MDVP: APQ**: Enter a number within the range [0, 0.1]
+            - **Shimmer: DDA**: Enter a number within the range [0, 0.2]
+            - **NHR**: Enter a number within the range [0, 0.5]
+            - **HNR**: Enter a number within the range [0, 30]
+            - **RPDE**: Enter a number within the range [0, 1]
+            - **DFA**: Enter a number within the range [0, 2]
+            - **Spread1**: Enter a number within the range [-10, 10]
+            - **Spread2**: Enter a number within the range [-10, 10]
+            - **D2**: Enter a number within the range [0, 10]
+            - **PPE**: Enter a number within the range [0, 1]
 
             """
-        )
+    )
 
 st.sidebar.markdown(
         """
@@ -171,15 +172,29 @@ if (selected == 'Diabetes Prediction'):
     # creating a button for Prediction
 
     if st.button('Diabetes Test Result'):
-        diab_prediction = diab_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+        try:
+                Pregnancies = float(Pregnancies)
+                Glucose = float(Glucose)
+                BloodPressure = float(BloodPressure)
+                SkinThickness = float(SkinThickness)
+                Insulin = float(Insulin)
+                BMI = float(BMI)
+                DiabetesPedigreeFunction = float(DiabetesPedigreeFunction)
+                Age = float(Age)
 
-        if (diab_prediction[0] == 1):
-          diab_diagnosis = "🩸 **Diagnosis:** The person has been **diagnosed with diabetes**."
-        else:
-          diab_diagnosis = "🥦 **Diagnosis:** The person does **not** have diabetes."
+                if any(x < 0 for x in [Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]):
+                    st.error("Please enter non-negative values for all input fields.")
+                else:
+                    diab_prediction = diab_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
 
-    st.success(diab_diagnosis)
+                    if (diab_prediction[0] == 1):
+                      diab_diagnosis = "🩸 **Diagnosis:** The person has been classified as a patient **with diabetes**."
+                    else:
+                      diab_diagnosis = "🥦 **Diagnosis:** The person has been classified as a patient to **not** have diabetes."
 
+                    st.success(diab_diagnosis)
+        except ValueError:
+            st.error("Please enter valid numeric values.")
 
 # Heart Disease Prediction Page
 if (selected == 'Heart Disease Prediction'):
@@ -226,25 +241,7 @@ if (selected == 'Heart Disease Prediction'):
         ca = st.text_input('Major vessels colored by flourosopy')
 
     with col1:
-        thal = st.text_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
-
-    try:
-        age = float(age)
-        sex = int(sex)
-        cp = float(cp)
-        trestbps = float(trestbps)
-        chol = float(chol)
-        fbs = float(fbs)
-        restecg = float(restecg)
-        thalach = float(thalach)
-        exang = float(exang)
-        oldpeak = float(oldpeak)
-        slope = float(slope)
-        ca = float(ca)
-        thal = float(thal)
-    except ValueError:
-        st.error("Please enter valid numeric values.")
-
+        thal = st.text_input('Thalassemia:0 = normal; 1 = fixed defect; 2 = reversable defect')
 
 
     # code for Prediction
@@ -253,16 +250,34 @@ if (selected == 'Heart Disease Prediction'):
     # creating a button for Prediction
 
     if st.button('Heart Disease Test Result'):
-        heart_prediction = heart_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])
+        try:
+            age = float(age)
+            sex = int(sex)
+            cp = float(cp)
+            trestbps = float(trestbps)
+            chol = float(chol)
+            fbs = float(fbs)
+            restecg = float(restecg)
+            thalach = float(thalach)
+            exang = float(exang)
+            oldpeak = float(oldpeak)
+            slope = float(slope)
+            ca = float(ca)
+            thal = float(thal)
 
-        if (heart_prediction[0] == 1):
-          heart_diagnosis = "❤️ **Diagnosis:** The person has **heart disease**."
-        else:
-          heart_diagnosis = "💙 **Diagnosis:** The person does **not** have heart disease."
+            if any(x < 0 for x in [age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]):
+                st.error("Please enter non-negative values for all input fields.")
+            else:
+                    heart_prediction = heart_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])
 
+                    if (heart_prediction[0] == 1):
+                         heart_diagnosis = "❤️ **Diagnosis:** The person has been classified as a patient **with heart disease**."
+                    else:
+                         heart_diagnosis = "💙 **Diagnosis:** The person has been classified as a patient to **not** have heart disease."
 
-    st.success(heart_diagnosis)
-
+                    st.success(heart_diagnosis)
+        except ValueError:
+             st.error("Please enter valid numeric values for Heart Disease Prediction.")
 
 # Parkinson's Prediction Page
 if (selected == "Parkinsons Prediction"):
@@ -345,11 +360,41 @@ if (selected == "Parkinsons Prediction"):
 
     # creating a button for Prediction
     if st.button("Parkinson's Test Result"):
-        parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])
+        try:
+            fo = float(fo)
+            fhi = float(fhi)
+            flo = float(flo)
+            Jitter_percent = float(Jitter_percent)
+            Jitter_Abs = float(Jitter_Abs)
+            RAP = float(RAP)
+            PPQ = float(PPQ)
+            DDP = float(DDP)
+            Shimmer = float(Shimmer)
+            Shimmer_dB = float(Shimmer_dB)
+            APQ3 = float(APQ3)
+            APQ5 = float(APQ5)
+            APQ = float(APQ)
+            DDA = float(DDA)
+            NHR = float(NHR)
+            HNR = float(HNR)
+            RPDE = float(RPDE)
+            DFA = float(DFA)
+            spread1 = float(spread1)
+            spread2 = float(spread2)
+            D2 = float(D2)
+            PPE = float(PPE)
 
-        if (parkinsons_prediction[0] == 1):
-          parkinsons_diagnosis = "🎙️ **Diagnosis:** The person has been **diagnosed with Parkinson's disease**."
-        else:
-          parkinsons_diagnosis = "🚀 **Diagnosis:** The person does **not** have Parkinson's disease."
+            if any(x < 0 for x in [fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]):
 
-    st.success(parkinsons_diagnosis)
+                        st.error("Please enter non-negative values for all input fields.")
+            else:
+                parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])
+
+                if (parkinsons_prediction[0] == 1):
+                  parkinsons_diagnosis = "🎙️ **Diagnosis:** The person has been classified as a patient **with Parkinson's disease**."
+                else:
+                  parkinsons_diagnosis = "🚀 **Diagnosis:** The person has been classified as a patient to **not** have Parkinson's disease."
+
+                st.success(parkinsons_diagnosis)
+        except ValueError:
+              st.error("Please enter valid numeric values for Parkinson's Disease Prediction.")
