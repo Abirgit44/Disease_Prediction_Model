@@ -228,8 +228,12 @@ input_fields = {
           - [Read More](https://en.wikipedia.org/wiki/Vocal_fold)
 
         - **spread2**: Enter another nonlinear measure of fundamental frequency variation.
-          - Normal Numeric Range: [0.0, 1.0]
+          - Normal Numeric Range: [-8.0, 0.0]
           - [Read More](https://en.wikipedia.org/wiki/Vocal_fold)
+
+        - **D2**: Enter a nonlinear dynamical complexity measure.
+          - Normal Numeric Range: [0.0, 3.0]
+          - [Read More](https://en.wikipedia.org/wiki/D2-like_receptor)
 
         - **PPE**: Enter another nonlinear measure of fundamental frequency variation.
           - Normal Numeric Range: [0.0, 0.8]
@@ -515,17 +519,20 @@ if (selected == "Parkinsons Prediction"):
             D2 = float(D2)
             PPE = float(PPE)
 
-            if any(x < 0 for x in [fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]):
+            if any(x < 0 for x in [fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread2,D2,PPE]):
 
                         st.error("Please enter non-negative values for all input fields.")
             else:
-                parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])
-
-                if (parkinsons_prediction[0] == 1):
-                  parkinsons_diagnosis = "🎙️ **Diagnosis:** The person has been classified as a patient **with Parkinson's disease**."
+                if (spread1< -8.5):
+                    st.error("The spread1 value is way beyond normal.")
                 else:
-                  parkinsons_diagnosis = "🚀 **Diagnosis:** The person has been classified as a patient to **not** have Parkinson's disease."
+                    parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])
 
-                st.success(parkinsons_diagnosis)
+                    if (parkinsons_prediction[0] == 1):
+                      parkinsons_diagnosis = "🎙️ **Diagnosis:** The person has been classified as a patient **with Parkinson's disease**."
+                    else:
+                      parkinsons_diagnosis = "🚀 **Diagnosis:** The person has been classified as a patient to **not** have Parkinson's disease."
+
+                    st.success(parkinsons_diagnosis)
         except ValueError:
               st.error("Please enter valid numeric values for Parkinson's Disease Prediction.")
