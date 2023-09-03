@@ -55,63 +55,193 @@ st.sidebar.markdown(
         """
     )
 
+
+# Create a sidebar expander
 sidebar_expander = st.sidebar.expander("📝 How to Enter Data")
-with sidebar_expander:
-          st.markdown(
-            """
-            To enter data for predictions, use the main page input boxes. Here are some sample examples:
 
-            ### Diabetes Prediction
-            - **Pregnancies**: Enter a whole number (e.g., 6)
-            - **Glucose**: Enter a number within the range [0, 200]
-            - **BloodPressure(Diastolic BP)**: Enter a single number (e.g., 72)
-            - **SkinThickness**: Enter a whole number (e.g., 35)
-            - **Insulin**: Enter a non-negative number within the range [0,35]
-            - **BMI**: Enter a number within the range [0, 60]
-            - **DiabetesPedigreeFunction**: Enter a number within the range [0, 2]
-            - **Age**: Enter a whole number within the range [0, 130]
+# Define a dictionary to store input fields for each disease
+input_fields = {
+    "Diabetes Prediction": """
+        To enter data for diabetes prediction, here are instructions based on **World Health Organization**:
 
-            ### Heart Disease Prediction
-            - **Age**: Enter a whole number within the range [0, 130]
-            - **Sex**: Enter 0 for female or 1 for male
-            - **Chest Pain Type (cp)**: Enter an integer between 0 and 3
-            - **Resting Blood Pressure(Diastolic BP)**: Enter a single number (e.g., 72)
-            - **Cholesterol (chol)**: Enter a number within the range [0, 600]
-            - **Fasting Blood Sugar ( > 120 mg/dl)**: Enter 0 for False or 1 for True
-            - **Resting ECG (restecg)**: Enter an integer between 0 and 2
-            - **Maximum Heart Rate (thalach)**: Enter a number within the range [60, 220]
-            - **Exercise Induced Angina (exang)**: Enter 0 for No or 1 for Yes
-            - **ST Depression Induced by Exercise (oldpeak)**: Enter a float number within the range [0, 10]
-            - **Slope of the Peak Exercise ST Segment (slope)**: Enter an integer between 0 and 2
-            - **Number of Major Vessels (ca)**: Enter an integer between 0 and 4
-            - **Thalassemia Type (thal)**: Enter an integer between 0 and 2
+        - **Pregnancies**: Enter the number of times pregnant (whole number, e.g., 6).
+          - Normal Numeric Range: [0, 20]
+          - [Read More](https://en.wikipedia.org/wiki/Gestational_diabetes)
 
-            ### Parkinson's Prediction
-            - **MDVP: Fo (Hz)**: Enter a number within the range [0, 250]
-            - **MDVP: Fhi (Hz)**: Enter a number within the range [0, 250]
-            - **MDVP: Flo (Hz)**: Enter a number within the range [0, 250]
-            - **MDVP: Jitter (%)**: Enter a number within the range [0, 1]
-            - **MDVP: Jitter (Abs)**: Enter a number within the range [0, 0.1]
-            - **MDVP: RAP**: Enter a number within the range [0, 0.1]
-            - **MDVP: PPQ**: Enter a number within the range [0, 0.1]
-            - **Jitter: DDP**: Enter a number within the range [0, 0.2]
-            - **MDVP: Shimmer**: Enter a number within the range [0, 1]
-            - **MDVP: Shimmer (dB)**: Enter a number within the range [0, 5]
-            - **Shimmer: APQ3**: Enter a number within the range [0, 0.05]
-            - **Shimmer: APQ5**: Enter a number within the range [0, 0.1]
-            - **MDVP: APQ**: Enter a number within the range [0, 0.1]
-            - **Shimmer: DDA**: Enter a number within the range [0, 0.2]
-            - **NHR**: Enter a number within the range [0, 0.5]
-            - **HNR**: Enter a number within the range [0, 30]
-            - **RPDE**: Enter a number within the range [0, 1]
-            - **DFA**: Enter a number within the range [0, 2]
-            - **Spread1**: Enter a number within the range [-10, 10]
-            - **Spread2**: Enter a number within the range [-10, 10]
-            - **D2**: Enter a number within the range [0, 10]
-            - **PPE**: Enter a number within the range [0, 1]
+        - **Glucose**: Enter the patient's fasting blood glucose concentration (mg/dL, e.g., 148).
+          - Normal Numeric Range: [70, 130] mg/dL
+          - [Read More](https://en.wikipedia.org/wiki/Glucose)
 
-            """
-    )
+        - **BloodPressure(Diastolic BP)**: Enter the diastolic blood pressure (mm Hg, e.g., 72).
+          - Normal Numeric Range: [60, 80] mm Hg
+          - [Read More](https://en.wikipedia.org/wiki/Blood_pressure)
+
+        - **SkinThickness**: Enter the patient's skin thickness (mm, e.g., 35).
+          - Normal Numeric Range: [10, 45] mm
+          - [Read More](https://en.wikipedia.org/wiki/Human_skin)
+
+        - **Insulin**: Enter the patient's insulin level (mu U/ml, e.g., 0).
+          - Normal Numeric Range: [0, 35] mu U/ml
+          - [Read More](https://en.wikipedia.org/wiki/Insulin)
+
+        - **BMI**: Enter the patient's body mass index (kg/m², e.g., 33.6).
+          - Normal Numeric Range: [18.5, 24.9] kg/m²
+          - [Read More](https://en.wikipedia.org/wiki/Body_mass_index)
+
+        - **DiabetesPedigreeFunction**: Enter the diabetes pedigree function (e.g., 0.627).
+          - Normal Numeric Range: [0.0, 1.6]
+          - [Read More](https://en.wikipedia.org/wiki/Diabetes_pedigree_function)
+
+        - **Age**: Enter the patient's age (whole number, e.g., 50).
+          - Normal Numeric Range: [20, 60] years
+          - [Read More](https://en.wikipedia.org/wiki/Ageing)
+        """,
+    "Heart Disease Prediction": """
+        To enter data for heart disease prediction, here are instructions based on **World Health Organization**:
+
+        - **Age**: Enter the patient's age.
+          - Normal Numeric Range: [0, 130] years
+          - [Read More](https://en.wikipedia.org/wiki/Ageing)
+
+        - **Sex**: Enter the patient's sex (0 for female, 1 for male).
+          - [Read More](https://en.wikipedia.org/wiki/Human_sex_ratio)
+
+        - **Chest Pain Type (cp)**: Enter the type of chest pain.
+          - Normal Numeric Range: [0, 3]
+          - [Read More](https://en.wikipedia.org/wiki/Chest_pain)
+
+        - **Resting Blood Pressure(Diastolic BP)**: Enter the resting diastolic blood pressure.
+          - Normal Numeric Range: [60, 90] mm Hg
+          - [Read More](https://en.wikipedia.org/wiki/Blood_pressure)
+
+        - **Cholesterol (chol)**: Enter the patient's cholesterol level.
+          - Normal Numeric Range: [125, 200] mg/dL
+          - [Read More](https://en.wikipedia.org/wiki/Cholesterol)
+
+        - **Fasting Blood Sugar (> 120 mg/dl)**: Enter fasting blood sugar status (0 for False, 1 for True).
+          - [Read More](https://en.wikipedia.org/wiki/Blood_sugar_level)
+
+        - **Resting ECG (restecg)**: Enter the resting electrocardiographic results.
+          - Normal Numeric Range: [0, 2]
+          - [Read More](https://en.wikipedia.org/wiki/Electrocardiography)
+
+        - **Maximum Heart Rate (thalach)**: Enter the patient's maximum heart rate.
+          - Normal Numeric Range: [60, 100] bpm
+          - [Read More](https://en.wikipedia.org/wiki/Heart_rate)
+
+        - **Exercise Induced Angina (exang)**: Enter exercise-induced angina status (0 for No, 1 for Yes).
+          - [Read More](https://en.wikipedia.org/wiki/Angina)
+
+        - **ST Depression Induced by Exercise (oldpeak)**: Enter ST depression induced by exercise.
+          - Normal Numeric Range: [0.0, 4.0]
+          - [Read More](https://en.wikipedia.org/wiki/ST_depression)
+
+        - **Slope of the Peak Exercise ST Segment (slope)**: Enter the slope of the peak exercise ST segment.
+          - Normal Numeric Range: [0, 2]
+          - [Read More](https://en.wikipedia.org/wiki/ST_segment)
+
+        - **Number of Major Vessels (ca)**: Enter the number of major vessels colored by fluoroscopy.
+          - Normal Numeric Range: [0, 3]
+          - [Read More](https://en.wikipedia.org/wiki/Coronary_artery_disease)
+
+        - **Thalassemia Type (thal)**: Enter the type of thalassemia.
+          - Normal Numeric Range: [0, 2]
+          - [Read More](https://en.wikipedia.org/wiki/Thalassemia)
+        """,
+    "Parkinsons Prediction": """
+        To enter data for Parkinson's prediction, here are instructions based on **World Health Organization**:
+
+        - **MDVP: Fo (Hz)**: Enter the average vocal fundamental frequency in Hz.
+          - Normal Numeric Range: [85, 260] Hz
+          - [Read More](https://en.wikipedia.org/wiki/Fundamental_frequency)
+
+        - **MDVP: Fhi (Hz)**: Enter the maximum vocal fundamental frequency in Hz.
+          - Normal Numeric Range: [175, 280] Hz
+          - [Read More](https://en.wikipedia.org/wiki/Fundamental_frequency)
+
+        - **MDVP: Flo (Hz)**: Enter the minimum vocal fundamental frequency in Hz.
+          - Normal Numeric Range: [85, 260] Hz
+          - [Read More](https://en.wikipedia.org/wiki/Fundamental_frequency)
+
+        - **MDVP: Jitter (%)**: Enter the percentage variation in fundamental frequency.
+          - Normal Numeric Range: [0.0, 0.1]
+          - [Read More](https://en.wikipedia.org/wiki/Jitter)
+
+        - **MDVP: Jitter (Abs)**: Enter the absolute variation in fundamental frequency.
+          - Normal Numeric Range: [0.0, 0.001]
+          - [Read More](https://en.wikipedia.org/wiki/Jitter)
+
+        - **MDVP: RAP**: Enter the relative average perturbation in fundamental frequency.
+          - Normal Numeric Range: [0.0, 0.02]
+          - [Read More](https://en.wikipedia.org/wiki/RAP)
+
+        - **MDVP: PPQ**: Enter the percentage of perturbations in fundamental frequency.
+          - Normal Numeric Range: [0.0, 0.02]
+          - [Read More](https://en.wikipedia.org/wiki/PPQ)
+
+        - **Jitter: DDP**: Enter the absolute difference between the average absolute difference of consecutive periods.
+          - Normal Numeric Range: [0.0, 0.05]
+          - [Read More](https://en.wikipedia.org/wiki/Jitter)
+
+        - **MDVP: Shimmer**: Enter the variation in amplitude.
+          - Normal Numeric Range: [0.0, 0.1]
+          - [Read More](https://en.wikipedia.org/wiki/Shimmer_(acoustics))
+
+        - **MDVP: Shimmer (dB)**: Enter the variation in amplitude in decibels.
+          - Normal Numeric Range: [0.0, 1.0]
+          - [Read More](https://en.wikipedia.org/wiki/Shimmer_(acoustics))
+
+        - **Shimmer: APQ3**: Enter the amplitude perturbation quotient.
+          - Normal Numeric Range: [0.0, 0.05]
+          - [Read More](https://en.wikipedia.org/wiki/Shimmer_(acoustics))
+
+        - **Shimmer: APQ5**: Enter another amplitude perturbation quotient.
+          - Normal Numeric Range: [0.0, 0.1]
+          - [Read More](https://en.wikipedia.org/wiki/Shimmer_(acoustics))
+
+        - **MDVP: APQ**: Enter a different measure of amplitude perturbation quotient.
+          - Normal Numeric Range: [0.0, 0.1]
+          - [Read More](https://en.wikipedia.org/wiki/APQ)
+
+        - **Shimmer: DDA**: Enter the difference between the amplitudes of consecutive periods.
+          - Normal Numeric Range: [0.0, 0.2]
+          - [Read More](https://en.wikipedia.org/wiki/Shimmer_(acoustics))
+
+        - **NHR**: Enter the noise-to-harmonics ratio.
+          - Normal Numeric Range: [0.0, 0.2]
+          - [Read More](https://en.wikipedia.org/wiki/Noise-to-harmonics_ratio)
+
+        - **HNR**: Enter the harmonics-to-noise ratio.
+          - Normal Numeric Range: [0.0, 1.0]
+          - [Read More](https://en.wikipedia.org/wiki/Harmonics-to-noise_ratio)
+
+        - **RPDE**: Enter a nonlinear dynamical complexity measure.
+          - Normal Numeric Range: [0.0, 0.5]
+          - [Read More](https://en.wikipedia.org/wiki/Poincar%C3%A9_plot)
+
+        - **DFA**: Enter the signal fractal scaling exponent.
+          - Normal Numeric Range: [0.0, 2.0]
+          - [Read More](https://en.wikipedia.org/wiki/Detrended_fluctuation_analysis)
+
+        - **spread1**: Enter a nonlinear measure of fundamental frequency variation.
+          - Normal Numeric Range: [0.0, 1.0]
+          - [Read More](https://en.wikipedia.org/wiki/Vocal_fold)
+
+        - **spread2**: Enter another nonlinear measure of fundamental frequency variation.
+          - Normal Numeric Range: [0.0, 1.0]
+          - [Read More](https://en.wikipedia.org/wiki/Vocal_fold)
+
+        - **PPE**: Enter another nonlinear measure of fundamental frequency variation.
+          - Normal Numeric Range: [0.0, 0.8]
+          - [Read More](https://en.wikipedia.org/wiki/Vocal_fold)
+        """
+}
+
+# Display input fields within the sidebar expander based on the selected disease
+sidebar_expander.markdown(input_fields[selected])
+
+
+
 
 st.sidebar.markdown(
         """
