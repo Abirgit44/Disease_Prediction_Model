@@ -2,7 +2,9 @@
 
 Predict the likelihood of diabetes, heart disease, and Parkinson's disease using machine learning models in this Streamlit web application.
 
-🔍 **Explore the project live**: [**Let's Explore 🚀**](https://predict-disease-by-abir.streamlit.app/)
+🔍 **Explore the project live**:
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://predict-disease-by-abir.streamlit.app/)
 
 ## Table of Contents
 - [Overview](#overview)
